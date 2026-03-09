@@ -109,4 +109,4 @@ See individual repository LICENSE files for details.
 
 ---
 
-(c) 2026 Singi Labs
+Made with ♥ in 🇪🇺 by [Singi Labs](https://singi.dev)
