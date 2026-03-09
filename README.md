@@ -1,8 +1,14 @@
 <div align="center">
 
-# Sifa
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/singi-labs/.github/main/assets/sifa-logo-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/singi-labs/.github/main/assets/sifa-logo-light.svg">
+  <img alt="Sifa Logo" src="https://raw.githubusercontent.com/singi-labs/.github/main/assets/sifa-logo-dark.svg" width="120">
+</picture>
 
-**Professional identity and career network on the AT Protocol.**
+# Sifa Workspace
+
+**Project coordination and issue tracking for the Sifa professional network.**
 
 [![Status: Alpha](https://img.shields.io/badge/status-alpha-orange)]()
 [![License: Source Available](https://img.shields.io/badge/License-Source--Available-blue)]()
@@ -13,21 +19,7 @@
 
 ## Overview
 
-Sifa is a decentralized professional network built on the [AT Protocol](https://atproto.com/). Portable profiles, verifiable track records from real community contributions, no vendor lock-in. A LinkedIn alternative where you own your data.
-
-**Domain:** [sifa.id](https://sifa.id) | **Namespace:** `id.sifa.*`
-
----
-
-## Repositories
-
-| Repository | Description | License |
-|------------|-------------|---------|
-| [sifa-workspace](https://github.com/singi-labs/sifa-workspace) | Project coordination and issue tracking | Source-available |
-| [sifa-api](https://github.com/singi-labs/sifa-api) | AppView backend (Fastify, AT Protocol, Jetstream) | Source-available |
-| [sifa-web](https://github.com/singi-labs/sifa-web) | Frontend (Next.js, React, TailwindCSS) | Source-available |
-| [sifa-deploy](https://github.com/singi-labs/sifa-deploy) | Docker Compose + Caddy deployment config | Source-available |
-| [sifa-lexicons](https://github.com/singi-labs/sifa-lexicons) | Professional profile lexicon schemas | MIT |
+Central coordination repository for the [Sifa](https://sifa.id) professional network. All ideas, bugs, and feature requests are tracked in this repo's [GitHub Issues](https://github.com/singi-labs/sifa-workspace/issues). Contains project-level documentation, architecture decisions, and cross-repo coordination.
 
 ---
 
@@ -46,11 +38,24 @@ Sifa AppView (reads and aggregates)
 └── sifa-deploy            Docker Compose + Caddy reverse proxy
 ```
 
+---
+
+## Repositories
+
+| Repository                                                           | Description                                    | License          |
+| -------------------------------------------------------------------- | ---------------------------------------------- | ---------------- |
+| [sifa-api](https://github.com/singi-labs/sifa-api)                 | AppView backend (Fastify, AT Protocol)         | Source-available |
+| [sifa-web](https://github.com/singi-labs/sifa-web)                 | Frontend (Next.js, React, TailwindCSS)         | Source-available |
+| [sifa-lexicons](https://github.com/singi-labs/sifa-lexicons)       | AT Protocol professional profile schemas       | MIT              |
+| [sifa-deploy](https://github.com/singi-labs/sifa-deploy)           | Docker Compose + Caddy deployment config       | Source-available |
+
+---
+
 ## Tech Stack
 
 - **Runtime:** Node.js 25 / TypeScript (strict)
 - **API:** Fastify 5 / Drizzle ORM / PostgreSQL 17 / Valkey 8
-- **Frontend:** Next.js 15+ / React 19 / TailwindCSS / shadcn/ui
+- **Frontend:** Next.js 16 / React 19 / TailwindCSS / shadcn/ui
 - **Protocol:** @atproto/oauth-client-node / Jetstream WebSocket / PDS applyWrites
 - **i18n:** next-intl (English, Dutch, German, French, Spanish, Portuguese)
 - **Deploy:** Docker / GitHub Actions / Caddy
@@ -70,7 +75,7 @@ git clone https://github.com/singi-labs/sifa-deploy.git
 # API development
 cd sifa-api
 npm install
-docker compose -f docker-compose.dev.yml up -d   # PostgreSQL + Valkey
+npm run services:up   # PostgreSQL + Valkey
 npm run dev
 
 # Web development (separate terminal)
@@ -81,15 +86,17 @@ npm run dev
 
 ---
 
-## Issues
-
-All ideas, bugs, and feature requests are tracked in this repo's [GitHub Issues](https://github.com/singi-labs/sifa-workspace/issues).
-
----
-
 ## Part of Singi Labs
 
 Sifa is built by [Singi Labs](https://singi.dev), alongside [Barazo](https://barazo.forum) (federated forum on AT Protocol). The two products share a flywheel: Barazo community participation builds verifiable professional track records that appear on Sifa profiles.
+
+---
+
+## Community
+
+- **Website:** [sifa.id](https://sifa.id)
+- **Discussions:** [GitHub Discussions](https://github.com/orgs/singi-labs/discussions)
+- **Issues:** [Report bugs or request features](https://github.com/singi-labs/sifa-workspace/issues)
 
 ---
 
