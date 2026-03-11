@@ -7,8 +7,25 @@ on:
 jobs:
   add-to-project:
     runs-on: ubuntu-latest
+    # Skip bot-created issues (Dependabot, GitHub Actions, etc.)
+    if: github.actor != 'dependabot[bot]' && github.actor != 'github-actions[bot]'
     steps:
-      - uses: actions/add-to-project@v1.0.2
+      # Wait 10s so rapid create-then-delete cycles settle
+      - name: Wait for issue to stabilize
+        run: sleep 10
+
+      - name: Verify issue still exists
+        id: check
+        run: |
+          STATUS=$(gh api repos/${{ github.repository }}/issues/${{ github.event.issue.number }} \
+            --jq '.state' 2>/dev/null) || STATUS="deleted"
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Add to project
+        if: steps.check.outputs.status == 'open'
+        uses: actions/add-to-project@v1.0.2
         with:
           project-url: https://github.com/orgs/singi-labs/projects/2
-          github-token: ${{ secrets.PROJECT_TOKEN }}
+          github-token: ${{ secrets.PROJECT_BOARD_TOKEN }}
