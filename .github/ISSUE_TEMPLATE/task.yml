@@ -1,0 +1,44 @@
+name: Task
+description: A non-code task (website, email, grant, design, infrastructure, etc.)
+labels: ["task", "triage"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What needs to be done?
+      description: Describe the task clearly.
+      placeholder: Set up a transactional email provider for...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Website
+        - Content & Copy
+        - Email & Comms
+        - Legal & Grants
+        - Design
+        - Infrastructure
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context & references
+      description: Links, screenshots, or background information.
+    validations:
+      required: false
+
+  - type: input
+    id: deadline
+    attributes:
+      label: Deadline (if any)
+      description: Leave blank if no hard deadline.
+      placeholder: "2026-04-01"
+    validations:
+      required: false
