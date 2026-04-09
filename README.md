@@ -11,7 +11,6 @@
 **Project coordination and issue tracking for the Sifa professional network.**
 
 [![Status: Alpha](https://img.shields.io/badge/status-alpha-orange)]()
-[![License: Source Available](https://img.shields.io/badge/License-Source--Available-blue)]()
 
 </div>
 
@@ -42,12 +41,12 @@ Sifa AppView (reads and aggregates)
 
 ## Repositories
 
-| Repository                                                           | Description                                    | License          |
-| -------------------------------------------------------------------- | ---------------------------------------------- | ---------------- |
-| [sifa-api](https://github.com/singi-labs/sifa-api)                 | AppView backend (Fastify, AT Protocol)         | Source-available |
-| [sifa-web](https://github.com/singi-labs/sifa-web)                 | Frontend (Next.js, React, TailwindCSS)         | Source-available |
-| [sifa-lexicons](https://github.com/singi-labs/sifa-lexicons)       | AT Protocol professional profile schemas       | MIT              |
-| [sifa-deploy](https://github.com/singi-labs/sifa-deploy)           | Docker Compose + Caddy deployment config       | Source-available |
+| Repository                                                           | Description                                    |
+| -------------------------------------------------------------------- | ---------------------------------------------- |
+| sifa-api                                                             | AppView backend (Fastify, AT Protocol)         |
+| sifa-web                                                             | Frontend (Next.js, React, TailwindCSS)         |
+| [sifa-lexicons](https://github.com/singi-labs/sifa-lexicons)       | AT Protocol professional profile schemas (MIT) |
+| sifa-deploy                                                          | Docker Compose + Caddy deployment config       |
 
 ---
 
@@ -61,28 +60,6 @@ Sifa AppView (reads and aggregates)
 - **Deploy:** Docker / GitHub Actions / Caddy
 
 ---
-
-## Development
-
-Each repository is independent (no monorepo). Clone and develop separately:
-
-```bash
-# Clone repos
-git clone https://github.com/singi-labs/sifa-api.git
-git clone https://github.com/singi-labs/sifa-web.git
-git clone https://github.com/singi-labs/sifa-deploy.git
-
-# API development
-cd sifa-api
-npm install
-npm run services:up   # PostgreSQL + Valkey
-npm run dev
-
-# Web development (separate terminal)
-cd sifa-web
-npm install
-npm run dev
-```
 
 ---
 
@@ -102,10 +79,7 @@ Sifa is built by [Singi Labs](https://singi.dev), alongside [Barazo](https://bar
 
 ## License
 
-- **Lexicons + import tools:** MIT
-- **Application code:** Source-available (public repo, proprietary license)
-
-See individual repository LICENSE files for details.
+The `id.sifa.*` lexicons are open source under the MIT license. See [sifa-lexicons](https://github.com/singi-labs/sifa-lexicons) for details.
 
 ---
 
