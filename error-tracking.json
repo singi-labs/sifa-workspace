@@ -1,4 +1,30 @@
 {
-  "lastReviewedAt": null,
-  "errors": {}
+  "lastReviewedAt": "2026-05-11T11:00:00Z",
+  "errors": {
+    "21522": { "issueNumber": 446, "firstSeen": "2026-04-24T10:01:07.989Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
+    "20611": { "issueNumber": 446, "firstSeen": "2026-04-04T15:59:31.589Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
+    "21433": { "issueNumber": 446, "firstSeen": "2026-04-20T15:39:16.415Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
+    "20610": { "issueNumber": 446, "firstSeen": "2026-04-04T10:32:03.948Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
+    "5":     { "issueNumber": 446, "firstSeen": "2026-03-22T12:48:21.829Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
+    "21161": { "issueNumber": 446, "firstSeen": "2026-04-17T14:10:01.061Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
+    "20536": { "issueNumber": 446, "firstSeen": "2026-04-01T17:11:37.852Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
+    "20703": { "issueNumber": 446, "firstSeen": "2026-04-07T19:07:21.893Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
+    "21611": { "issueNumber": 446, "firstSeen": "2026-05-01T17:43:38.745Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
+    "21612": { "issueNumber": 447, "firstSeen": "2026-05-03T22:16:37.012Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "position record not found" },
+    "21613": { "issueNumber": 447, "firstSeen": "2026-05-03T22:17:16.112Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "position record not found" },
+    "3":     { "issueNumber": 448, "firstSeen": "2026-03-20T07:00:01.574Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "generic 500 on PUT /api/profile/self" },
+    "20701": { "issueNumber": 449, "firstSeen": "2026-04-04T21:37:05.999Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "UND_ERR_SOCKET" },
+    "20831": { "issueNumber": null, "firstSeen": "2026-04-15T22:38:43.010Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing, fixed by c804ed6" },
+    "20842": { "issueNumber": null, "firstSeen": "2026-04-16T00:04:15.164Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing" },
+    "21540": { "issueNumber": null, "firstSeen": "2026-04-26T14:28:41.926Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing" },
+    "21085": { "issueNumber": null, "firstSeen": "2026-04-17T10:34:07.229Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing" },
+    "21609": { "issueNumber": null, "firstSeen": "2026-05-01T11:12:29.595Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing" },
+    "21224": { "issueNumber": null, "firstSeen": "2026-04-17T17:32:22.301Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing" },
+    "21470": { "issueNumber": null, "firstSeen": "2026-04-21T05:47:06.028Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing" },
+    "21527": { "issueNumber": null, "firstSeen": "2026-04-25T00:51:36.170Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing" },
+    "21533": { "issueNumber": null, "firstSeen": "2026-04-25T09:50:31.442Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing" },
+    "20776": { "issueNumber": null, "firstSeen": "2026-04-15T15:24:46.750Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing" },
+    "20742": { "issueNumber": null, "firstSeen": "2026-04-15T13:09:12.847Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing" },
+    "20738": { "issueNumber": null, "firstSeen": "2026-04-15T12:57:57.437Z", "fixPR": 432, "fixMergedAt": "2026-05-01T13:40:28Z", "gracePeriodHours": 6, "status": "resolved", "note": "Failed query - industries column missing" }
+  }
 }
