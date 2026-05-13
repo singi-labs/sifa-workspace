@@ -72,7 +72,6 @@ Sifa is built by [Singi Labs](https://singi.dev), alongside [Barazo](https://bar
 ## Community
 
 - **Website:** [sifa.id](https://sifa.id)
-- **Discussions:** [GitHub Discussions](https://github.com/orgs/singi-labs/discussions)
 - **Issues:** [Report bugs or request features](https://github.com/singi-labs/sifa-workspace/issues)
 
 ---
