@@ -72,6 +72,7 @@ Sifa is built by [Singi Labs](https://singi.dev), alongside [Barazo](https://bar
 ## Community
 
 - **Website:** [sifa.id](https://sifa.id)
+- **Bluesky:** [@sifa.id](https://bsky.app/profile/sifa.id)
 - **Issues:** [Report bugs or request features](https://github.com/singi-labs/sifa-workspace/issues)
 
 ---
