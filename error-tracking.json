@@ -1,6 +1,13 @@
 {
-  "lastReviewedAt": "2026-05-11T11:00:00Z",
+  "lastReviewedAt": "2026-05-24T00:00:00Z",
   "errors": {
+    "21616": { "issueNumber": 551, "firstSeen": "2026-05-17T14:14:54.030Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "notification_log mark-read - malformed array literal, single UUID passed to uuid[] param" },
+    "21619": { "issueNumber": null, "firstSeen": "2026-05-20T19:10:05.519Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "noise", "note": "CSP script-elem blocks, empty source - likely browser extensions, no actionable context" },
+    "21620": { "issueNumber": null, "firstSeen": "2026-05-20T19:10:05.579Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "noise", "note": "CSP script blocks, empty source - same root as 21619" },
+    "21618": { "issueNumber": 446, "firstSeen": "2026-05-20T17:52:53.775Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated - covered by existing tracker" },
+    "21617": { "issueNumber": null, "firstSeen": "2026-05-18T20:31:19.879Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "noise", "note": "DB connection terminated, 1x - coincides with watchdog event, transient" },
+    "21615": { "issueNumber": 449, "firstSeen": "2026-05-15T09:37:01.361Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "UND_ERR_SOCKET - covered by existing tracker" },
+    "21614": { "issueNumber": null, "firstSeen": "2026-05-14T13:33:36.336Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "watching", "note": "Auth failed 4x on 2026-05-14, no recurrence in 10 days - keep watching" },
     "21522": { "issueNumber": 446, "firstSeen": "2026-04-24T10:01:07.989Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
     "20611": { "issueNumber": 446, "firstSeen": "2026-04-04T15:59:31.589Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
     "21433": { "issueNumber": 446, "firstSeen": "2026-04-20T15:39:16.415Z", "fixPR": null, "fixMergedAt": null, "gracePeriodHours": 6, "status": "open", "note": "heatmap truncated" },
