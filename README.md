@@ -52,7 +52,7 @@ Sifa AppView (reads and aggregates)
 
 ## Tech Stack
 
-- **Runtime:** Node.js 25 / TypeScript (strict)
+- **Runtime:** Node.js 26 / TypeScript (strict)
 - **API:** Fastify 5 / Drizzle ORM / PostgreSQL 17 / Valkey 8
 - **Frontend:** Next.js 16 / React 19 / TailwindCSS / shadcn/ui
 - **Protocol:** @atproto/oauth-client-node / Jetstream WebSocket / PDS applyWrites
