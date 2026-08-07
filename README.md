@@ -48,6 +48,43 @@ Sifa AppView (reads and aggregates)
 | [sifa-lexicons](https://github.com/singi-labs/sifa-lexicons)       | AT Protocol professional profile schemas (MIT) |
 | sifa-deploy                                                          | Docker Compose + Caddy deployment config       |
 
+### Dependency graph
+
+`scripts/dep-graph.mjs` maps how the `sifa-*` repos depend on each other. It reads
+each repo's `package.json`, resolves `@singi-labs/*` deps to sibling repos, and
+reports edges, orphans, cycles, version drift, duplicate clones, and internal
+deps with no repo checked out locally. No dependencies, no state written, no
+network access.
+
+```bash
+# fetch first so origin/main is current, then read from the branch
+# rather than from whatever happens to be checked out
+git -C <each repo> fetch origin main
+node scripts/dep-graph.mjs --root ~/Documents/Git --root ~/Git --ref origin/main
+```
+
+| Flag | Effect |
+| ---- | ------ |
+| `--root <dir>` | Directory holding the repos; repeatable (default: parent of this repo) |
+| `--ref <git-ref>` | Read `package.json` from a git ref, e.g. `origin/main`, instead of the working tree |
+| `--prefix <str>` | Repo directory prefix to scan (default: `sifa-`) |
+| `--scope <scope>` | Package scope treated as internal (default: `@singi-labs`) |
+| `--json` | Machine-readable output |
+| `--mermaid` | Mermaid diagram for docs |
+| `--strict` | Exit 1 on drift, unresolved internal deps, or cycles |
+
+Two things worth knowing:
+
+- **Pass `--ref origin/main`.** Reading the working tree reports whatever a local
+  clone happens to be at, which on a machine with stale checkouts produces
+  drift numbers that are simply wrong.
+- **Pass every root.** Repos are not all under one directory on every machine.
+  Clones are de-duplicated by their `origin` remote rather than directory name,
+  so a second clone under a different name is reported instead of appearing as
+  a phantom project with phantom edges.
+
+Use `--strict` in CI to catch SDK version drift before it reaches a release.
+
 ---
 
 ## Tech Stack
