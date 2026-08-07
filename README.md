@@ -41,12 +41,17 @@ Sifa AppView (reads and aggregates)
 
 ## Repositories
 
-| Repository                                                           | Description                                    |
-| -------------------------------------------------------------------- | ---------------------------------------------- |
-| sifa-api                                                             | AppView backend (Fastify, AT Protocol)         |
-| sifa-web                                                             | Frontend (Next.js, React, TailwindCSS)         |
-| [sifa-lexicons](https://github.com/singi-labs/sifa-lexicons)       | AT Protocol professional profile schemas (MIT) |
-| sifa-deploy                                                          | Docker Compose + Caddy deployment config       |
+| Repository | Visibility | Description |
+| ---------- | ---------- | ----------- |
+| sifa-api | private | AppView backend (Fastify, AT Protocol) |
+| sifa-web | private | Frontend (Next.js, React, TailwindCSS) |
+| sifa-deploy | private | Docker Compose + Caddy deployment config |
+| [sifa-sdk](https://github.com/singi-labs/sifa-sdk) | public | Client library for the AppView, on npm as `@singi-labs/sifa-sdk` (MIT) |
+| [sifa-lexicons](https://github.com/singi-labs/sifa-lexicons) | public | AT Protocol professional profile schemas, `id.sifa.*` (MIT) |
+| [sifa-docs](https://github.com/singi-labs/sifa-docs) | public | Documentation site (Fumadocs) — docs.sifa.id |
+| [sifa-page](https://github.com/singi-labs/sifa-page) | public | Self-hostable personal site generated from a Sifa profile |
+| [sifa-page-renderer](https://github.com/singi-labs/sifa-page-renderer) | public | Pure HTML renderer behind sifa-page, on npm as `@singi-labs/sifa-page-renderer` |
+| sifa-workspace | public | This repo — project coordination and issue tracking |
 
 ### Dependency graph
 
