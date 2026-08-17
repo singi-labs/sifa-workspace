@@ -18,7 +18,7 @@
 
 ## Overview
 
-Central coordination repository for the [Sifa](https://sifa.id) professional network. All ideas, bugs, and feature requests are tracked in this repo's [GitHub Issues](https://github.com/singi-labs/sifa-workspace/issues). Contains project-level documentation, architecture decisions, and cross-repo coordination.
+Central coordination repository for the [Sifa](https://sifa.id) professional network. To report a bug or request a feature, [send feedback](https://sifa.id/feedback). Contains project-level documentation, architecture decisions, and cross-repo coordination.
 
 ---
 
@@ -115,7 +115,7 @@ Sifa is built by [Singi Labs](https://singi.dev), alongside [Barazo](https://bar
 
 - **Website:** [sifa.id](https://sifa.id)
 - **Bluesky:** [@sifa.id](https://bsky.app/profile/sifa.id)
-- **Issues:** [Report bugs or request features](https://github.com/singi-labs/sifa-workspace/issues)
+- **Feedback:** [Report bugs or request features](https://sifa.id/feedback)
 
 ---
 
