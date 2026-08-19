@@ -1,0 +1,92 @@
+name: Bug report (QA)
+description: Report a bug or unexpected behaviour found while testing Sifa.
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing Sifa. One bug per report. Fill in what you can — steps and expected-vs-actual matter most.
+
+  - type: input
+    id: surface
+    attributes:
+      label: Where did it happen?
+      description: The page or feature, and the URL if relevant.
+      placeholder: "Profile editor — Education section (sifa.id/settings/...)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps, starting from a known state.
+      placeholder: |
+        1. Log in with the test account
+        2. Open the profile editor
+        3. Add an Education entry with no end date
+        4. Save
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+      placeholder: The entry saves and shows "Present".
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      placeholder: The save button stays disabled and no error is shown.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: Your best guess — the team will confirm.
+      options:
+        - Blocker (cannot proceed / data loss)
+        - Major (feature broken, no workaround)
+        - Minor (feature works, wrong/awkward behaviour)
+        - Cosmetic (visual / copy only)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Onboarding / signup
+        - LinkedIn import
+        - Profile view
+        - Profile editing
+        - Accessibility
+        - Responsive / mobile
+        - SEO / metadata
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser + version, OS, and screen size (desktop / mobile). Note if JavaScript was disabled.
+      placeholder: "Chrome 141, macOS, desktop 1440px"
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshot / recording / console
+      description: Drag in an image or video. Paste any console or network errors.
+    validations:
+      required: false
