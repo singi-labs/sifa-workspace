@@ -1,0 +1,67 @@
+name: QA triage (Maryna / Mykhailo reports)
+
+# When Maryna or Mykhailo files an issue, route it into the QA flow automatically:
+# assign it to Guido, add it to the board, set QA Owner to the reporter, and put
+# it in "Ready for Dev" (Guido's implement/fix queue). The existing
+# auto-add-to-project workflow also adds every issue; add-to-project is
+# idempotent, so running it here again just returns the existing item id.
+
+on:
+  issues:
+    types: [opened, transferred]
+
+permissions:
+  issues: write
+
+jobs:
+  qa-triage:
+    runs-on: ubuntu-latest
+    if: github.event.issue.user.login == 'marynaoc' || github.event.issue.user.login == 'mykhailo-com'
+    steps:
+      - name: Wait for issue to stabilize
+        run: sleep 10
+
+      - name: Verify issue still open
+        id: check
+        run: |
+          STATUS=$(gh api "repos/${{ github.repository }}/issues/${{ github.event.issue.number }}" --jq '.state' 2>/dev/null) || STATUS="deleted"
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Assign to Guido
+        if: steps.check.outputs.status == 'open'
+        run: gh issue edit "${{ github.event.issue.number }}" --repo "${{ github.repository }}" --add-assignee gxjansen
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Add to project board
+        id: add
+        if: steps.check.outputs.status == 'open'
+        uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: https://github.com/orgs/singi-labs/projects/2
+          github-token: ${{ secrets.PROJECT_BOARD_TOKEN }}
+
+      - name: Set QA Owner + Status
+        if: steps.check.outputs.status == 'open'
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_BOARD_TOKEN }}
+          ITEM_ID: ${{ steps.add.outputs.itemId }}
+          AUTHOR: ${{ github.event.issue.user.login }}
+        run: |
+          PROJECT_ID="PVT_kwDOD4Vljc4BPpMY"
+          STATUS_FIELD="PVTSSF_lADOD4Vljc4BPpMYzg9_mGI"
+          READY_FOR_DEV="f5a746cd"
+          OWNER_FIELD="PVTSSF_lADOD4Vljc4BPpMYzhhq-FU"
+          if [ "$AUTHOR" = "marynaoc" ]; then OWNER="4b3f1e09"; else OWNER="2b21d159"; fi
+
+          set_field() {
+            gh api graphql -f query='
+              mutation($p:ID!,$i:ID!,$f:ID!,$o:String!){
+                updateProjectV2ItemFieldValue(input:{projectId:$p,itemId:$i,fieldId:$f,value:{singleSelectOptionId:$o}}){ projectV2Item { id } }
+              }' -F p="$PROJECT_ID" -F i="$ITEM_ID" -F f="$1" -F o="$2"
+          }
+
+          set_field "$OWNER_FIELD" "$OWNER"
+          set_field "$STATUS_FIELD" "$READY_FOR_DEV"
