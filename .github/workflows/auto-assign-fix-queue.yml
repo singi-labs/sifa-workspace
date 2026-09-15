@@ -1,0 +1,48 @@
+name: Auto-assign fix queue to Guido
+
+# Every 15 minutes, assign Guido to any card in "Rework" or "Ready for Dev" on
+# board #2 that is not already assigned to him. These are Guido's fix queue.
+# GitHub Projects native workflows cannot set an assignee, and Actions cannot
+# trigger on a board status change, so this polls instead.
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign Ready-for-Dev / Rework cards to Guido
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_BOARD_TOKEN }}
+        run: |
+          set -euo pipefail
+          GX=$(gh api users/gxjansen --jq .node_id)
+
+          gh api graphql --paginate -f query='
+          query($endCursor: String) {
+            node(id: "PVT_kwDOD4Vljc4BPpMY") {
+              ... on ProjectV2 {
+                items(first: 100, after: $endCursor) {
+                  pageInfo { hasNextPage endCursor }
+                  nodes {
+                    content { __typename ... on Issue { id state assignees(first: 10) { nodes { login } } } }
+                    fieldValues(first: 40) { nodes { ... on ProjectV2ItemFieldSingleSelectValue { name field { ... on ProjectV2FieldCommon { name } } } } }
+                  }
+                }
+              }
+            }
+          }' \
+          | jq -sr '[ .[].data.node.items.nodes[]
+              | select(.content.__typename == "Issue" and .content.state == "OPEN")
+              | { cid: .content.id,
+                  assignees: [ (.content.assignees.nodes // [])[].login ],
+                  status: ([ (.fieldValues.nodes // [])[] | select(.field.name == "Status") | .name ][0] // "") }
+              | select((.status == "Rework" or .status == "Ready for Dev") and ((.assignees | index("gxjansen")) | not))
+              | .cid ] | unique | .[]' \
+          | while read -r cid; do
+              gh api graphql -f query='mutation($a: ID!, $u: ID!) { addAssigneesToAssignable(input: { assignableId: $a, assigneeIds: [$u] }) { clientMutationId } }' \
+                -F a="$cid" -F u="$GX" >/dev/null && echo "assigned $cid to Guido"
+            done
