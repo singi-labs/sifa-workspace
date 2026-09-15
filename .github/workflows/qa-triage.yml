@@ -1,9 +1,8 @@
 name: Triage incoming issues
 
 # Any issue NOT authored by gxjansen is routed for evaluation: assign it to
-# Guido, add it to board #2, and set Status to "Triage". Issues from the QA
-# people (Maryna, Mykhailo) additionally get QA Owner set, so they surface on
-# the QA board. Guido's own issues are left to his normal flow. Bots are skipped.
+# Guido, add it to board #2, and set Status to "Triage". Guido then evaluates it.
+# Guido's own issues are left to his normal flow. Bots are skipped.
 # The existing auto-add-to-project workflow still adds every other issue;
 # actions/add-to-project is idempotent, so re-adding here just returns the item id.
 
@@ -47,7 +46,7 @@ jobs:
           project-url: https://github.com/orgs/singi-labs/projects/2
           github-token: ${{ secrets.PROJECT_BOARD_TOKEN }}
 
-      - name: Set Status = Triage (+ QA Owner for QA staff)
+      - name: Set Status = Triage
         if: steps.check.outputs.status == 'open'
         env:
           GH_TOKEN: ${{ secrets.PROJECT_BOARD_TOKEN }}
@@ -57,18 +56,8 @@ jobs:
           PROJECT_ID="PVT_kwDOD4Vljc4BPpMY"
           STATUS_FIELD="PVTSSF_lADOD4Vljc4BPpMYzg9_mGI"
           TRIAGE="dedb726d"
-          OWNER_FIELD="PVTSSF_lADOD4Vljc4BPpMYzhhq-FU"
 
-          set_field() {
-            gh api graphql -f query='
-              mutation($p:ID!,$i:ID!,$f:ID!,$o:String!){
-                updateProjectV2ItemFieldValue(input:{projectId:$p,itemId:$i,fieldId:$f,value:{singleSelectOptionId:$o}}){ projectV2Item { id } }
-              }' -F p="$PROJECT_ID" -F i="$ITEM_ID" -F f="$1" -F o="$2"
-          }
-
-          set_field "$STATUS_FIELD" "$TRIAGE"
-
-          case "$AUTHOR" in
-            marynaoc)     set_field "$OWNER_FIELD" "4b3f1e09" ;;
-            mykhailo-com) set_field "$OWNER_FIELD" "2b21d159" ;;
-          esac
+          gh api graphql -f query='
+            mutation($p:ID!,$i:ID!,$f:ID!,$o:String!){
+              updateProjectV2ItemFieldValue(input:{projectId:$p,itemId:$i,fieldId:$f,value:{singleSelectOptionId:$o}}){ projectV2Item { id } }
+            }' -F p="$PROJECT_ID" -F i="$ITEM_ID" -F f="$STATUS_FIELD" -F o="$TRIAGE"
