@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     # Skip bot-created issues (Dependabot, GitHub Actions, etc.)
     if: github.actor != 'dependabot[bot]' && github.actor != 'github-actions[bot]'
+    # The default token only has contents/metadata read, so reading an issue
+    # in a private repo returns 404 without this.
+    permissions:
+      issues: read
     steps:
       # Wait 10s so rapid create-then-delete cycles settle
       - name: Wait for issue to stabilize
@@ -17,11 +21,34 @@ jobs:
       - name: Verify issue still exists
         id: check
         run: |
-          STATUS=$(gh api repos/${{ github.repository }}/issues/${{ github.event.issue.number }} \
-            --jq '.state' 2>/dev/null) || STATUS="deleted"
+          if STATUS=$(gh api "repos/${REPO}/issues/${NUMBER}" --jq '.state' 2>gh-error.log); then
+            :
+          elif grep -qE 'HTTP (404|410)' gh-error.log; then
+            # A 404 also comes back when the token cannot read issues at all,
+            # so only treat it as a deletion if the issue list is readable.
+            if ! gh api "repos/${REPO}/issues?state=all&per_page=1" --silent 2>gh-probe.log; then
+              echo "::error::Token cannot read issues in ${REPO}: $(cat gh-probe.log)"
+              exit 1
+            fi
+            STATUS="deleted"
+          else
+            echo "::error::Could not read state of issue #${NUMBER}: $(cat gh-error.log)"
+            exit 1
+          fi
+
+          case "$STATUS" in
+            open) ;;
+            closed|deleted) echo "::notice::Issue #${NUMBER} is ${STATUS}, not adding it to the board" ;;
+            *)
+              echo "::error::Unexpected state '${STATUS}' for issue #${NUMBER}"
+              exit 1
+              ;;
+          esac
           echo "status=$STATUS" >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
 
       - name: Add to project
         if: steps.check.outputs.status == 'open'
