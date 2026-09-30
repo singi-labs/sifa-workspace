@@ -1,0 +1,62 @@
+name: QA flow metrics
+
+# Nightly snapshot of board #2 Status for Sifa items. Diffs against the
+# previous snapshot, appends Status transitions, and rebuilds QA-METRICS.md.
+# GitHub records no history for Status changes made through the API, so the
+# job keeps its own. Data lives on the `qa-metrics` branch, not on main.
+# Script and tests: scripts/qa-metrics/.
+
+on:
+  schedule:
+    - cron: '7 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qa-metrics
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main (scripts)
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run unit tests
+        run: node --test scripts/qa-metrics/
+
+      - name: Check out qa-metrics branch (create orphan if missing)
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin qa-metrics >/dev/null; then
+            git fetch --depth=1 origin qa-metrics
+            git worktree add -B qa-metrics data FETCH_HEAD
+          else
+            git worktree add --orphan -b qa-metrics data
+          fi
+
+      - name: Take snapshot and rebuild report
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_BOARD_TOKEN }}
+        run: node scripts/qa-metrics/run.mjs --data-dir data
+
+      - name: Commit and push data
+        working-directory: data
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state.json transitions.csv QA-METRICS.md
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -q -m "chore(qa-metrics): snapshot $(date -u +%F)"
+          git push origin HEAD:qa-metrics
