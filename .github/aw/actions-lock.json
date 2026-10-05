@@ -4,6 +4,11 @@
       "repo": "github/gh-aw-actions/setup",
       "version": "v0.89.21",
       "sha": "924af5fdc64061cfbf66fb584c8b07e2ac230c60"
+    },
+    "singi-labs/.github/actions/jev-issue-triage@main": {
+      "repo": "singi-labs/.github/actions/jev-issue-triage",
+      "version": "main",
+      "sha": "9033c03774a7c71ec3c656419830923163cc305f"
     }
   }
 }
