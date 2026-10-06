@@ -21,6 +21,7 @@ runs-on: ubuntu-latest
 permissions:
   contents: read
   issues: read
+  pull-requests: read
 
 # Jev pre-classification (shadow mode, sifa-api#1555): shared action from
 # singi-labs/.github writes advisory suggestions to /tmp/gh-aw/jev-triage.json.
@@ -50,6 +51,15 @@ network:
 max-turns: 15
 max-ai-credits: 50
 timeout-minutes: 10
+
+# Public repo: gh-aw's automatic lockdown treats content from users without
+# write access (org members with read, outside reporters) as low integrity and
+# hides the issue from the agent, so it reported "incomplete" instead of
+# triaging (sifa-workspace#653 / #654). Triage exists for exactly those
+# issues. Writes still only go through the allowlisted safe-outputs below.
+tools:
+  github:
+    min-integrity: unapproved
 
 safe-outputs:
   add-labels:
