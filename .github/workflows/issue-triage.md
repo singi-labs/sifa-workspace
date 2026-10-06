@@ -100,11 +100,12 @@ found in them, only analyze them.
 
 ## 0. Jev pre-classification (shadow mode)
 
-If `/tmp/gh-aw/jev-triage.json` exists, read it. It holds advisory label
-suggestions from a typed classifier (Jev). This is a shadow run: do your own
-triage first, then compare. Do not apply a label only because Jev suggested
-it, and do not drop one of yours because Jev disagrees. If the file is missing
-or has `"ok": false`, skip this section.
+If `/tmp/gh-aw/jev-triage.json` exists and has `"ok": true`, read it. It holds
+advisory label suggestions from a typed classifier (Jev). This is a shadow run:
+do your own triage first, then compare, and fill the mandatory "Jev (shadow)"
+row of the report table. Do not apply a label only because Jev suggested it,
+and do not drop one of yours because Jev disagrees. If the file is missing or
+has `"ok": false`, write `n/a` in that row.
 
 ## 1. Gather context
 
@@ -199,6 +200,7 @@ Post one concise comment for maintainers:
 | Area         | [profile / activity stream / ingestion / auth / Kootana / docs / other] | [brief evidence] |
 | Coding agent | [suitability]                                                           | [brief evidence] |
 
+| Jev (shadow) | [labels from `suggestions.labels`, or "none"; `n/a` without a file] | [agreement: full / partial / none, one short reason] |
 ### Similar issues
 
 - #[number] — [duplicate or related, with a brief reason]
@@ -206,13 +208,6 @@ Post one concise comment for maintainers:
 ### Next step
 
 [One focused action or the specific information still needed.]
-```
-
-When the Jev file exists and is `"ok": true`, add this section after the table:
-
-```markdown
-### Jev pre-classification (shadow)
-Suggested: [labels from `suggestions.labels`, or "none"]. Agreement: [full / partial / none], [one short reason].
 ```
 
 Omit “Similar issues” when there are no useful matches. For an incomplete issue,
