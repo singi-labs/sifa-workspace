@@ -35,7 +35,7 @@ steps:
 # in the API-proxy sidecar; the agent never sees it). Never a Claude subscription token.
 engine:
   id: claude
-  model: anthropic/claude-haiku-4.5
+  model: anthropic/claude-haiku-5.5
   env:
     ANTHROPIC_BASE_URL: 'https://openrouter.ai/api'
 
