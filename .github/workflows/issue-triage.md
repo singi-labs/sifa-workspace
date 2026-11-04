@@ -60,11 +60,6 @@ timeout-minutes: 10
 tools:
   github:
     min-integrity: unapproved
-    # Pinned: GitHub MCP Server v2.0.2 loses the issue number on public repos
-    # (resource becomes issue:<repo>#unknown, tagged none:public), so the guard
-    # filters every issue and triage reports incomplete. Upstream: github/gh-aw#70961.
-    # Remove the pin once that is fixed.
-    version: v1.12.2
 
 safe-outputs:
   add-labels:

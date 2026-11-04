@@ -1,9 +1,9 @@
 {
   "entries": {
-    "github/gh-aw-actions/setup@v0.91.11": {
+    "github/gh-aw-actions/setup@v1.0.1": {
       "repo": "github/gh-aw-actions/setup",
-      "version": "v0.91.11",
-      "sha": "c0d661a2925687358c937720c5c7d3c338299f55"
+      "version": "v1.0.1",
+      "sha": "221ba4f4319de6b8e809d1a15528b3ae6a818aa5"
     },
     "singi-labs/.github/actions/jev-issue-triage@main": {
       "repo": "singi-labs/.github/actions/jev-issue-triage",
